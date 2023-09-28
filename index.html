@@ -1,6 +1,8 @@
-<!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01//EN” “http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
   <head>
+   
+   <link href="bootstrap.min.css" rel="stylesheet">
     	<meta charset="UTF-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
 	<meta HTTP-EQUIV="Cache-Control" CONTENT="no cache">
@@ -10,6 +12,22 @@
     <title>PAYBY</title>
     <script type="text/javascript" src="PayBy.js"></script>     
     <style>    
+    
+    .content {
+        width: 500px;
+        max-width: 100%;
+        margin:auto;
+    }
+    @media screen and (max-width: 480px) {
+        .content {
+            padding-left:10px;
+            padding-right:10px;
+        }
+    }
+    #content {
+
+        padding-top: 1em;
+    }
    body
    {
     margin:0;
@@ -32,22 +50,28 @@
       }
       input:focus
       {
-       border: 0.1px solid rgb(0 131 255 / 73%);
-        /*background-color: #007bff26;*/
+      border: 0.1px solid rgb(0 131 255 / 73%);
+        
         background-color: #bbdaff26;
+        
       }
-      input {
-        width: 45px;
-        height: 45px;
-        border-radius: 14px;
+     input {
+        width: 100%;
+        height: 50px;
         border:1px solid white;
-        background-color: #f5f6f7;
+       background-color: #f5f6f7;
         text-align: center;
         outline:none;
+        border-radius: 14px;
+      }
+      #OTP
+      {
+       width: 1px;
+       height: 1px;
       }
       .otpInput{
-      	margin:16px 0px 0px 0px ;
-        text-align:center;
+      	margin:16px 0px 16px 0px ;
+        	padding :0px 10px;
       }
       
       .otpContent {       
@@ -59,6 +83,7 @@
         margin-top: 24px;
         position: relative;
       }
+      
      /* .btn {   
         width:100%; 
         font-size: 1.2em; 
@@ -122,7 +147,7 @@
             background-color: #ffffff;
 		}
             
-        }
+        
        
       .content {
         max-width: 100%;
@@ -133,10 +158,17 @@
         margin:0px 16px
        
     }
-
-    
-    
 /* ADDED ON 08SEP22 BY MAMTA TOP LOGO */
+@media screen and (min-width:610px) {
+        .logoLeft {
+            height: 35px;
+        }
+        .logoRight {
+            height: 35px;
+        }
+    }
+
+
  @media screen and (max-width:610px) {
         .logoLeft {
             height: 35px;
@@ -159,6 +191,14 @@
         }
         .logoRight {
             height: 25px;
+        }
+    }
+    @media screen and (max-width:365px) {
+        .logoLeft {
+            height: 22px;
+        }
+        .logoRight {
+            height: 22px;
         }
     }
 @media screen and (max-width:360px) {
@@ -199,42 +239,66 @@
             
         }
     }
+     
+         
+    /*media query for otp input box*/
+    @media screen and (max-width:740px) {
+        input {
+            
+            height:50px;
+            border-radius: 14px;
+        }
+    @media screen and (max-width:480px) {
+        input {
+            
+            height:48px;
+            border-radius: 14px;
+        }
+        
+        @media screen and (max-width:424px) {
+        input {
+            
+            height:43px;
+            border-radius: 13px;
+        }
+    
     
     @media screen and (max-width:370px) {
         input {
-            width: 40px;
+            
             height:40px;
-            border-radius: 10px;
+            border-radius: 12px;
         }
         
     }
+    
+    
     @media screen and (max-width:347px) {
         input {
-            width: 35px;
-            height:35px;
+           
+            height:32px;
             border-radius: 10px;
-        }
-        
+          }     
     }
       @media screen and (max-width:304px) {
         input {
-            width: 32px;
+            
             height:32px;
-            border-radius: 10px;
+            border-radius: 11px;
         }
         
     }
-    @media screen and (max-width:276px) {
+    @media screen and (max-width:286px) {
         input {
-            width: 30px;
+            
             height:30px;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         
     }
     @media screen and (max-width:270px) {
         input {
-            width: 28px;
+            
             height:28px;
             border-radius: 8px;
         }
@@ -242,7 +306,7 @@
     }
     @media screen and (max-width:259px) {
         input {
-            width: 25px;
+            
             height:25px;
             border-radius: 5px;
         }
@@ -250,41 +314,29 @@
     }
     @media screen and (max-width:240px) {
         input {
-            width: 22px;
+           
             height:22px;
-            border-radius: 5px;
+            border-radius: 6px;
         }
         
-    }
-    
-    @media screen and (max-width:226px) {
+    } 
+     @media screen and (max-width:200px) {
         input {
-            width: 19px;
-            height:19px;
-            border-radius: 3px;
+           
+            height:20px;
+            border-radius: 4px;
         }
         
-    }
-    
-    @media screen and (max-width:208px) {
-        input {
-            width: 16px;
-            height:16px;
-            border-radius: 1px;
+    }  
+    @media (min-devide-width:320px) and (max-device-width:768px){
+     input {
+           
+            height:35px;
+            border-radius: 8px;
         }
-        
-    }
-    @media screen and (max-width:190px) {
-        input {
-            width: 13px;
-            height:13px;
-            border-radius: 1px;
         }
-        
-    }
-    
-    
-#arrow{
+         
+    #arrow{
       width: 19px;
     }
     
@@ -307,35 +359,38 @@
 	color: var(--gray-gray-6-secondary, #80868B);
 
 	}
- #OTP
-      {
-       width: 1px;
-       height: 1px;
-      }	
+	
 	#flasher
 	{
-
+	
 	font-family:'SF Pro';
 	font-size: 13px;
 	font-style: normal;
 	font-weight: 200;	
 	color: var(--gray-gray-7-primary, #2A2B2F);
-	margin:16px 0px 0px 0px;
+	margin:0PX;
 	}
 	@font-face {
     font-family: 'SF Pro';
-    src: url('SFPro-Regular.woff2') format('woff2'),
-        url('SFPro-Regular.woff') format('woff');
+    src: url('enc/SFPro-Regular.woff2') format('woff2'),
+        url('enc/SFPro-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 	}
+	
+	
+.height-100 {
+    height: 100vh
+}
+
+
     </style>   
 
  </head>
-<body onload="body(); f1()"> 
+<body onload="body(); f1()" class="content"> 
  <form name="form1" action="%%RESPONSEURL%%"  method ="post" > 
-    <div class="content" id="content">     
+    <div  id="content">     
       <div style="margin-top:16px">
         <button id="backButton" style="visibility: hidden;"><img id="arrow"src="backArrow.png"/></button>
         <!-- <a style="position: relative; float:right;" href="%%RESPONSEURL%%?cancel=true">&#215</a> -->
@@ -351,22 +406,32 @@
           <span style="font-weight: 600;"><strong>%%AMOUNT%%</strong></span>.</p>
         </div>     
         <div  class="otpContent_second" id ="second_text">
-         <p> OTP has been sent to the registered mobile number <span style="font-weight: 600;color: var(--gray-gray-7-primary, #2A2B2F);"><strong>XXXXXX%%MOBILE%%</strong></span> and valid for 5 minutes.</p>
+         <p  style="font-family:'SF Pro'; font-size: 14px; font-weight: 400; line-height: 22px;color: var(--gray-gray-6-secondary, #80868B);"> OTP has been sent to the registered mobile number <span style="font-weight: 600;color: var(--gray-gray-7-primary, #2A2B2F);"><strong>XXXXXX%%MOBILE%%</strong></span> and valid for 5 minutes.</p>
         </div>     
-        <div class="otpInput">
-          <input type="password" minlength="1" maxlength="1" name="input1" value="" class="input" />
-          <input type="password" minlength="1" maxlength="1" name="input2" value=""  class="input" />
-          <input type="password" minlength="1" maxlength="1" name="input3" value=""  class="input" />
-          <input type="password" minlength="1" maxlength="1" name="input4" value=""  class="input" />
-          <input type="password" minlength="1" maxlength="1" name="input5" value=""  class="input" />
-          <input type="password" minlength="1" maxlength="1" name="input6" value=""  class="input"/>
-        </div>                   
+      <!--  <div class="otpInput">
+          <input type="password"  min="1" max="1" name="input1" value="" class="input" />
+          <input type="password" min="1" max="1" name="input2" value=""  class="input" />
+          <input type="password" min="1" max="1" name="input3" value=""  class="input" />
+          <input type="password" min="1" max="1" name="input4" value=""  class="input" />
+          <input type="password" min="1" max="1" name="input5" value=""  class="input" />
+          <input type="password" min="1" max="1" name="input6" value=""  class="input"/>
+        </div>   -->
+                        
+<div id="otp"  class="otpInput mt-2 inputs d-flex flex-row justify-content-center input"> 
+	<input class="m-2 text-center form-control" name="input1" type="password" id="first" maxlength="1"  /> 
+	<input class="m-2 text-center form-control" name="input2" type="password" id="second" maxlength="1" /> 
+	<input class="m-2 text-center form-control" name="input3" type="password" id="third" maxlength="1"  />
+	<input class="m-2 text-center form-control"  name="input4" type="password" id="fourth" maxlength="1"/> 
+ 	<input class="m-2 text-center form-control"  name="input5" type="password" id="fifth" maxlength="1" />
+  	<input class="text-center form-control"  name="input6" type="password" id="sixth" maxlength="1"     /> 
+  </div>
+
 	 <div style="visibility: visible;"> 
          <p id="flasher"> Request a new OTP if no OTP received within <span id="timer"></span></p>     
         </div>                            
  	 <div style="text-align: center;">       
-          <a class="resend_btn" id="resend" style="visibility: hidden" name="IDCT_BUT_NAME"  href="%%RESPONSEURL%%?resend=true" onclick="hrefcon = false;" ><strong>Resend OTP</strong></a>     
-	<input name="OTP" id="OTP" maxlength="6" alt="NUMBWINULL|001|006" value="" type="text" style="visibility:hidden";/>
+          <a class="resend_btn" id="resend" style="visibility: hidden" name="IDCT_BUT_NAME"  href="%%RESPONSEURL%%?resend=true" onclick="hrefcon = false;" ><strong>Resend OTP</strong></a>      
+          <input  name="OTP" id="OTP" maxlength="6" alt="NUMBWINULL|001|006" value="" type="text" style="visibility:hidden;"/>                                     
         </div>     
       <footer >
          <button class="btn" id="IDCT_BUTID" name="IDCT_BUT_NAME" value="submit"  onclick= "needToConfirm = false;return formvalid();" type="Submit"><strong>Submit</strong></button>   
