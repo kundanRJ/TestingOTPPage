@@ -1,27 +1,28 @@
 let finalInput = "";
 
 function body() {
- this.frm = document.getElementsByName("form1")[0];
+     
+  this.frm = document.getElementsByName("form1")[0];
   const input = document.querySelectorAll(".input");
   const inputField = document.querySelector(".otpInput");
   const submitButton = document.getElementById("submit");
   let inputCount = 0;
-  //frm.input1.focus(); 
+  frm.input1.focus(); 
   //input.focus()[0];
   //  Update input
   const updateInputConfig = (element, disabledStatus) => {
+  
     //element.disabled = disabledStatus;
     if (!disabledStatus) {
       element.focus();
-    } else {
+     }else {
       element.blur();
     }
   };
 
-  input.forEach((element) => {
+    input.forEach((element) => {
     element.addEventListener("keyup", (e) => {
-      //debugger;
-      e.target.value = e.target.value.replace(/[^0-9]/g, "");
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
 
       let { value } = e.target;
 
@@ -68,11 +69,35 @@ function body() {
       }
     }
   });
+  
+  setTimeout (function(){
+        },60000);
+        var countdownNum = 60;
+        incTimer();
+        function incTimer(){
+        setTimeout (function(){
+            if(countdownNum != 0)
+            {
+              countdownNum--;
+              document.getElementById("resend").style.visibility = "hidden";
+             document.getElementById('timer').innerHTML = countdownNum + ' seconds';          
+             incTimer();
+            }
+            else
+            {
+           document.getElementById("flasher").style.margin = "0px";
+             document.getElementById("resend").style.visibility = "visible";
+             document.getElementById("flasher").style.visibility = "hidden";   
+            }
+        },1000);
+        }
+  
 }
 
 
+
+
  function formvalid() { 
- 
  const inputs = document.querySelectorAll('input[type="password"]');
         const values = [];
   
@@ -80,9 +105,12 @@ function body() {
           values.push(input.value);
         });           
         textOtp=values.join('');
+        
+        alert("text OTP : "+textOtp);
         var otpField=document.getElementById("OTP");
         otpField.value=textOtp;
         var getOtp=document.getElementById("OTP").value;
+        alert("otp get from otp field  :"+getOtp);
         otp1 =getOtp;
         
         alert("OTP1 : "+otp1);
@@ -104,7 +132,7 @@ function body() {
           }
           else {
 
-               // alert("else block");
+
 		return true;
 		}
                 
@@ -123,28 +151,7 @@ function clickOnOtp()
 	
 }   
 //For afetr resend click flsher enable    
-  function flashEnable()
-    {
-   //alert("RESEND )";
-     setTimeout (function(){
-        },60000);
-        var countdownNum = 6;
-        incTimer();
-        function incTimer(){
-        setTimeout (function(){
-            if(countdownNum != 0){
-
-            countdownNum--;
-             document.getElementById("resend").style.visibility = "hidden";
-    	     document.getElementById("flasher").style.visibility = "visible";   
-    	     document.getElementById("flasher").style.marginTop="16px";	    
-            document.getElementById('timer').innerHTML = countdownNum + ' seconds';          
-            incTimer();
-            }
-        },1000);
-       }    
-    }  
- 
+  
   function flashEnable()
     {
     
@@ -182,25 +189,7 @@ function clickOnOtp()
   }
   
   
-ocument.getElementById("resend").addEventListener("click", function(event) {
 
-             alert("inside event function...");   
-            event.preventDefault();
-
-            var url=document.getElementById("resend");
-            var xhr = new XMLHttpRequest();
-            xhr.open("get", url , true);
-            alert("sent request to..." +url);
-            
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log(xhr.responseText);
-                }
-            };
-            
-            xhr.send();
-    
-        });
        
 
    
