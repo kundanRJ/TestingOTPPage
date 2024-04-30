@@ -38,6 +38,7 @@ function body() {
         //validateOTP(finalInput);
         inputCount += 1;
       } else if (value.length == 0 && e.key == "Backspace") {
+
         finalInput = finalInput.substring(0, finalInput.length - 1);
         if (inputCount == 0) {
           updateInputConfig(e.target, false);
@@ -70,7 +71,31 @@ function body() {
     }
   });
   
-  setTimeout (function(){
+   display = document.querySelector('#timer');
+  alert("inside function ....");
+   var duration=300;
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+
+        if (--timer < 0) {
+            timer = duration;
+            
+             document.getElementById("flasher").style.margin = "0px";
+             document.getElementById("resend").style.visibility = "visible";
+             document.getElementById("flasher").style.visibility = "hidden";   
+        }
+    }, 1000);
+  }
+  
+ /* setTimeout (function(){
         },60000);
         var countdownNum = 60;
         incTimer();
@@ -92,7 +117,37 @@ function body() {
         },1000);
         }
   
+} */
+
+function startTimer(duration, display) {
+alert("inside function ....");
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+
+        if (--timer < 0) {
+            timer = duration;
+            
+             document.getElementById("flasher").style.margin = "0px";
+             document.getElementById("resend").style.visibility = "visible";
+             document.getElementById("flasher").style.visibility = "hidden";   
+        }
+    }, 1000);
 }
+
+window.onload = function () {
+alert("inside onload function ");
+    var fiveMinutes = 300,
+        display = document.querySelector('#timer');
+    startTimer(300, display);
+};
 
 
 
@@ -106,15 +161,13 @@ function body() {
         });           
         textOtp=values.join('');
         
-        alert("text OTP : "+textOtp);
         var otpField=document.getElementById("OTP");
         otpField.value=textOtp;
         var getOtp=document.getElementById("OTP").value;
-        alert("otp get from otp field  :"+getOtp);
+      
         otp1 =getOtp;
         
-        alert("OTP1 : "+otp1);
-        
+       
          if(otp1.length==0||otp1.length==null)
         {
         alert("Please Enter Your OTP !");
@@ -151,7 +204,7 @@ function clickOnOtp()
 	
 }   
 //For afetr resend click flsher enable    
-  
+/*  
   function flashEnable()
     {
     
@@ -165,8 +218,7 @@ function clickOnOtp()
             {
               countdownNum--;
               document.getElementById("resend").style.visibility = "hidden";
-    	      document.getElementById("flasher_timer").style.visibility = "visible";   
-    	      document.getElementById("flasher").style.visibility = "hidden";	    
+    	      document.getElementById("flasher").style.visibility = "visible";   
     	      document.getElementById("flasher").style.margin = "0px";
              document.getElementById('timer').innerHTML = countdownNum + ' seconds';          
              incTimer();
@@ -181,14 +233,19 @@ function clickOnOtp()
         }
      
     }
-    
+    */
     function f1()
   {
         var otpField=document.getElementById("OTP");
         otpField.value="";
   }
   
-  
+  function moveToNext(currentInput, nextInputId) {
+  if (currentInput.value && nextInputId) {
+    document.getElementById(nextInputId).disabled = false;
+    document.getElementById(nextInputId).focus();
+  }
+}
 
        
 
