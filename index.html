@@ -7,59 +7,11 @@
 </head>
 <body>
   <h1>Auto Fill OTP</h1>
-  <p>Enter your phone number and click the button to receive the OTP:</p>
-  <input type="tel" id="phoneNumber" placeholder="Enter your phone number">
-  <button onclick="requestOTP()">Request OTP</button>
-  <br>
-  <br>
-  <p>Enter the OTP received on your phone:</p>
-  <input type="text" id="otpInput" placeholder="Enter OTP">
   
-  <script>
-    async function requestOTP() {
-      const phoneNumber = document.getElementById('phoneNumber').value;
-      
-      try {
-        const response = await fetch('/sendOTP', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ phoneNumber })
-        });
+     <input type="text" id="otp-input" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="\d{6}">
 
-        if (response.ok) {
-          alert('OTP sent successfully!');
-          // Now, wait for the OTP to be auto-filled
-        } else {
-          alert('Failed to send OTP. Please try again later.');
-        }
-      } catch (error) {
-        console.error('Error sending OTP:', error);
-        alert('An error occurred while sending OTP. Please try again later.');
-      }
-    }
-
-    async function autoFillOTP() {
-      const otpInput = document.getElementById('otpInput');
-      
-      if ('OTPCredential' in window) {
-        try {
-          const credential = await navigator.credentials.get({ otp: { transport: ['sms'] } });
-
-          if (credential && credential.code) {
-            otpInput.value = credential.code;
-          }
-        } catch (error) {
-          console.error('Error auto-filling OTP:', error);
-        }
-      } else {
-        console.error('Web OTP API not supported.');
-      }
-    }
-
-    // Call autoFillOTP when the page loads to attempt to auto-fill the OTP
-    window.addEventListener('load', autoFillOTP);
-  </script>
+   
+   
+  
 </body>
 </html>
