@@ -26,6 +26,7 @@
           } 
           catch (err) {
             console.log(err);
+           alert("error"+err);
           }
         }
      }
