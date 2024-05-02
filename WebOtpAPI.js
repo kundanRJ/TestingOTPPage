@@ -14,7 +14,7 @@ if ('OTPCredential' in window) {
       signal: ac.signal
     }).then(otp => {
       input.value = otp.code;
-      alert("getting otp : "+input.value );
+      alert("getting otp : " +input.value );
       if (form) form.submit();
     }).catch(err => {
       console.log(err);
