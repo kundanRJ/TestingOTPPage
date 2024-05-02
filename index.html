@@ -7,12 +7,10 @@
   <script type="text/javascript" src="WebOtpAPI.js"></script>     
 </head>
 <body>
-  <h1>Auto Read SMS Demo</h1>
-  <p>This page demonstrates automatic reading of OTP from SMS using the Web OTP API.</p>
-  <p>Once the page loads, it will attempt to automatically read the OTP from SMS (if available).</p>
-  
-  <input type="text" autocomplete="one-time-code" inputmode="numeric" />
-
+  <form>
+    <input autocomplete="one-time-code" required/>
+    <input type="submit">
+  </form>
   
 </body>
 </html>
