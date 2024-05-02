@@ -1,35 +1,32 @@
- function autoReadSMS(cb) {
-    alert("inside funvction");
-    // used AbortController with setTimeout so that WebOTP API (Autoread sms) will get disabled after 1min
-     const signal = new AbortController();
-     setTimeout(() => {
-       signal.abort();
-     }, 1 * 60 * 1000);
-     async function main() {
-       if ('OTPCredential' in window) {
-          try {
-             if (navigator.credentials) {
-                try {
-                   await navigator.credentials
-                   .get({ abort: signal, otp:{ transport: ['sms']}})
-                   .then(content => {
-                     if (content && content.code) {
-                       cb(content.code); 
-                     }
-                   })
-                   .catch(e => console.log(e));
-                } 
-                catch (e) {
-                  return;
-                }
-             }
-          } 
-          catch (err) {
-            console.log(err);
-           alert("error"+err);
-          }
-        }
-     }
-     main();
-    }
-    
+// Detect feature support via OTPCredential availability
+if ("OTPCredential" in window) {
+    window.addEventListener("DOMContentLoaded", (e) => {
+      const input = document.querySelector('input[autocomplete="one-time-code"]');
+      if (!input) return;
+      // Set up an AbortController to use with the OTP request
+      const ac = new AbortController();
+      const form = input.closest("form");
+      if (form) {
+        // Abort the OTP request if the user attempts to submit the form manually
+        form.addEventListener("submit", (e) => {
+          ac.abort();
+        });
+      }
+      // Request the OTP via get()
+      navigator.credentials
+        .get({
+          otp: { transport: ["sms"] },
+          signal: ac.signal,
+        })
+        .then((otp) => {
+          // When the OTP is received by the app client, enter it into the form
+          // input and submit the form automatically
+          input.value = otp.code;
+          if (form) form.submit();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
+  }
+  
