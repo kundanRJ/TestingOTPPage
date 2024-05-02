@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Read SMS Demo</title>
+  <script type="text/javascript" src="WebOtpAPI.js"></script> 
+</head>
+<body>
+  <h1>Auto Read SMS Demo</h1>
+  <p>This page demonstrates automatic reading of OTP from SMS using the Web OTP API.</p>
+  <p>Once the page loads, it will attempt to automatically read the OTP from SMS (if available).</p>
+  
+  <input type="text" id="otpInput" placeholder="Enter OTP">
 
-        <script type="text/javascript" src="WebOtpAPI.js"></script> 
+  <script>
+    // Paste your autoReadSMS function here
 
-    </head>
+    // Define a function to fill the OTP into the input box
+    function fillOTP(code) {
+      document.getElementById('otpInput').value = code;
+    }
 
-        <body>
-            <form action="/verify-otp" method="POST">
-                <input type="text"
-                       inputmode="numeric"
-                       autocomplete="one-time-code"
-                       pattern="\d{6}"
-                       required >
-              </form>
-        </body>
+    // Define a callback function to handle the OTP code
+    function handleOTP(code) {
+      fillOTP(code);
+    }
 
+    // Call the autoReadSMS function with the handleOTP callback function
+    autoReadSMS(handleOTP);
+  </script>
+</body>
 </html>
