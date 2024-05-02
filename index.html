@@ -11,24 +11,8 @@
   <p>This page demonstrates automatic reading of OTP from SMS using the Web OTP API.</p>
   <p>Once the page loads, it will attempt to automatically read the OTP from SMS (if available).</p>
   
-  <input type="text" id="otpInput" placeholder="Enter OTP">
+  <input type="text" autocomplete="one-time-code" inputmode="numeric" />
 
-  <script>
-    // Paste your autoReadSMS function here
-
-    // Define a function to fill the OTP into the input box
-    function fillOTP(code) {
-      alert("otp from msg :" +code);
-      document.getElementById('otpInput').value = code;
-    }
-
-    // Define a callback function to handle the OTP code
-    function handleOTP(code) {
-      fillOTP(code);
-    }
-
-    // Call the autoReadSMS function with the handleOTP callback function
-    autoReadSMS(handleOTP);
-  </script>
+  
 </body>
 </html>
