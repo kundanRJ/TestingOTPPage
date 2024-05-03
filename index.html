@@ -6,9 +6,30 @@
   <title>Auto Fill OTP</title>
 </head>
 <body>
-  <h1>Auto Fill OTP</h1>
-  
-     <input type="text" id="otp-input" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="\d{6}">
-  
+  <input type="text" autocomplete="one-time-code" inputmode="numeric" />
+<script>
+if ('OTPCredential' in window) {
+  window.addEventListener('DOMContentLoaded', e => {
+    const input = document.querySelector('input[autocomplete="one-time-code"]');
+    if (!input) return;
+    const ac = new AbortController();
+    const form = input.closest('form');
+    if (form) {
+      form.addEventListener('submit', e => {
+        ac.abort();
+      });
+    }
+    navigator.credentials.get({
+      otp: { transport:['sms'] },
+      signal: ac.signal
+    }).then(otp => {
+      input.value = otp.code;
+      if (form) form.submit();
+    }).catch(err => {
+      console.log(err);
+    });
+  });
+}
+</script>
 </body>
 </html>
