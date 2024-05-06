@@ -5,45 +5,35 @@
     <style>div {font-family: sans-serif;}</style>
   </head>
   <body>
-    <div style="border:1px solid; padding: 5px; 10px; margin: 10px 0;">
-      <form action="/post" method="post">
-        Enter OTP here:
-        <input type="text" autocomplete="one-time-code" inputmode="numeric" name="one-time-code">
-        <input type="submit" id="post" value="Submit">
-      </form>
-    </div>
+   <form>
+  <input autocomplete="one-time-code" required/>
+  <input type="submit">
+</form>
     <script>
- function autoReadSMS(cb) {
- const signal = new AbortController();
- setTimeout(() => {
-   signal.abort();
- }, 1 * 60 * 1000);
- async function main() {
-   if ('OTPCredential' in window) {
-      try {
-         if (navigator.credentials) {
-            try {
-               await navigator.credentials
-               .get({ abort: signal, otp:{ transport: ['sms']}})
-               .then(content => {
-                 if (content && content.code) {
-                   cb(content.code);
-                     alert(contect.code);
-                 }
-               })
-               .catch(e => console.log(e));
-            } 
-            catch (e) {
-              return;
-            }
-         }
-      } 
-      catch (err) {
-        console.log(err);
-      }
+  if ('OTPCredential' in window) {
+      alert("Autoreading is available");
+  window.addEventListener('DOMContentLoaded', e => {
+    const input = document.querySelector('input[autocomplete="one-time-code"]');
+    if (!input) return;
+    const ac = new AbortController();
+    const form = input.closest('form');
+    if (form) {
+      form.addEventListener('submit', e => {
+        ac.abort();
+      });
     }
- }
- main();
+    navigator.credentials.get({
+      otp: { transport:['sms'] },
+      signal: ac.signal
+    }).then(otp => {
+      input.value = otp.code;
+        alert("otp : "+otp.code);
+        alert(input.values);
+      if (form) form.submit();
+    }).catch(err => {
+      console.log(err);
+    });
+  });
 }
     </script>
 
