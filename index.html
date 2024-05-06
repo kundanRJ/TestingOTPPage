@@ -28,6 +28,7 @@
                .then(content => {
                  if (content && content.code) {
                    cb(content.code);
+                     alert(contect.code);
                  }
                })
                .catch(e => console.log(e));
