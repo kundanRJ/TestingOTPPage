@@ -38,7 +38,6 @@ function body() {
         //validateOTP(finalInput);
         inputCount += 1;
       } else if (value.length == 0 && e.key == "Backspace") {
-
         finalInput = finalInput.substring(0, finalInput.length - 1);
         if (inputCount == 0) {
           updateInputConfig(e.target, false);
@@ -71,31 +70,7 @@ function body() {
     }
   });
   
-   display = document.querySelector('#timer');
-  alert("inside function ....");
-   var duration=300;
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-
-        if (--timer < 0) {
-            timer = duration;
-            
-             document.getElementById("flasher").style.margin = "0px";
-             document.getElementById("resend").style.visibility = "visible";
-             document.getElementById("flasher").style.visibility = "hidden";   
-        }
-    }, 1000);
-  }
-  
- /* setTimeout (function(){
+  setTimeout (function(){
         },60000);
         var countdownNum = 60;
         incTimer();
@@ -117,37 +92,7 @@ function body() {
         },1000);
         }
   
-} */
-
-function startTimer(duration, display) {
-alert("inside function ....");
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-
-        if (--timer < 0) {
-            timer = duration;
-            
-             document.getElementById("flasher").style.margin = "0px";
-             document.getElementById("resend").style.visibility = "visible";
-             document.getElementById("flasher").style.visibility = "hidden";   
-        }
-    }, 1000);
 }
-
-window.onload = function () {
-alert("inside onload function ");
-    var fiveMinutes = 300,
-        display = document.querySelector('#timer');
-    startTimer(300, display);
-};
 
 
 
@@ -204,7 +149,7 @@ function clickOnOtp()
 	
 }   
 //For afetr resend click flsher enable    
-/*  
+  
   function flashEnable()
     {
     
@@ -233,23 +178,83 @@ function clickOnOtp()
         }
      
     }
-    */
+    
     function f1()
   {
         var otpField=document.getElementById("OTP");
         otpField.value="";
   }
   
-  function moveToNext(currentInput, nextInputId) {
-  if (currentInput.value && nextInputId) {
-    document.getElementById(nextInputId).disabled = false;
-    document.getElementById(nextInputId).focus();
-  }
+  
+
+  
+  
+  //Added by surya for fetching SMS.
+
+       function fetchSMS() {
+    return new Promise((resolve, reject) => {
+        if (navigator.userAgent.includes('Android') || navigator.userAgent.includes('iOS')) {
+        
+            // If mobile device, fetch SMS from API--- here sample URL is used.
+            
+            fetch('https://api.twilio.com/2010-04-01/Accounts/ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/Messages.json', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer abc123def456ghi789jkl012mno345pqr678stu901vwx234yz',// sample SID
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch SMS');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Extracting OTP from API response
+                resolve(data.otp);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        } else {
+            
+           console.log("I love INDIA");
+            resolve("");
+        }
+    });
+}
+//added by surya for filling the input field automatically.
+
+function autoReadOTP() {
+    fetchSMS()
+        .then((sms) => {
+            const otp = extractOTP(sms);
+            if (otp) {
+                const otpInputs = document.querySelectorAll('.otpInput input');
+                otp.split('').forEach((digit, index) => {
+                    otpInputs[index].value = digit;
+                    
+                    otpInputs[index].dispatchEvent(new Event('input', { bubbles: true }));
+                   
+                    
+                });
+            }
+        })
+        .catch((error) => {
+            // Handle errors here
+        });
 }
 
-       
+// added by surya for extracting OTP from massage that user got.
+
+function extractOTP(sms) {
+    const otpRegex = /\b\d{6}\b/;
+    const match = sms.match(otpRegex);
+    return match ? match[0] : null;
+}
 
    
-       
-   
+        
+  
   
