@@ -60,6 +60,7 @@
         text-align: center;
         outline:none;
         border-radius: 14px;
+        
       }
       #OTP
       {
@@ -377,12 +378,12 @@
                         
 <div id="otp"  class="otpInput mt-2 inputs d-flex flex-row justify-content-center input" inputmode="numeric" pattern="[0-9]*" maxlength="6" >  <!-- Added for numeric keyboard.-->
     
-<input class="m-2 text-center form-control" name="input1" type="password" id="first" maxlength="1" onclick="autoReadOTP()" onkeyup="moveToNext(this, 'second')"/> 
-<input class="m-2 text-center form-control" name="input2" type="password" id="second" maxlength="1" disabled onkeyup="moveToNext(this, 'third')" > 
-<input class="m-2 text-center form-control" name="input3" type="password" id="third" maxlength="1" disabled onkeyup="moveToNext(this, 'fourth')">
-<input class="m-2 text-center form-control"  name="input4" type="password" id="fourth" maxlength="1" disabled onkeyup="moveToNext(this, 'fifth')"> 
-<input class="m-2 text-center form-control"  name="input5" type="password" id="fifth" maxlength="1" disabled onkeyup="moveToNext(this, 'sixth')">
-<input class="m-2 text-center form-control"  name="input6" type="password" id="sixth" maxlength="1" disabled > 
+<input class="m-2 text-center form-control" name="input1" type="password" id="first" maxlength="1" inputmode="numeric" onclick="autoReadOTP()" onkeyup="moveToNext(this, 'second')"/> 
+<input class="m-2 text-center form-control" name="input2" type="password" id="second" maxlength="1" inputmode="numeric"  disabled onkeyup="moveToNext(this, 'third')" > 
+<input class="m-2 text-center form-control" name="input3" type="password" id="third" maxlength="1" inputmode="numeric" disabled onkeyup="moveToNext(this, 'fourth')">
+<input class="m-2 text-center form-control"  name="input4" type="password" id="fourth" maxlength="1" inputmode="numeric"  disabled onkeyup="moveToNext(this, 'fifth')"> 
+<input class="m-2 text-center form-control"  name="input5" type="password" id="fifth" maxlength="1" inputmode="numeric" disabled onkeyup="moveToNext(this, 'sixth')">
+<input class="m-2 text-center form-control"  name="input6" type="password" id="sixth" maxlength="1" inputmode="numeric"  disabled > 
   </div> 
 	 <div style="visibility: visible;"> 
          <p id="flasher" style="font-family:'SF Pro'; font-size: 13px; font-weight: 200;font-style: normal; line-height: 22px;color: var(--gray-gray-7-primary, #2A2B2F);"> Request a new OTP if no OTP received within <span id="timer"></span></p>     
