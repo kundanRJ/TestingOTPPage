@@ -219,7 +219,7 @@ function clickOnOtp()
             });
         } else {
             
-           console.log("I love INDIA");
+           alert("inside fetch sms function");
             resolve("");
         }
     });
@@ -227,6 +227,7 @@ function clickOnOtp()
 //added by surya for filling the input field automatically.
 
 function autoReadOTP() {
+	alert("inside auto read function");
     fetchSMS()
         .then((sms) => {
             const otp = extractOTP(sms);
