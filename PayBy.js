@@ -192,6 +192,7 @@ function clickOnOtp()
   //Added by surya for fetching SMS.
 
        function fetchSMS() {
+	       alert("inside fetch sms -:");
     return new Promise((resolve, reject) => {
         if (navigator.userAgent.includes('Android') || navigator.userAgent.includes('iOS')) {
         
@@ -250,6 +251,7 @@ function autoReadOTP() {
 // added by surya for extracting OTP from massage that user got.
 
 function extractOTP(sms) {
+	alert("inside extract otp");
     const otpRegex = /\b\d{6}\b/;
     const match = sms.match(otpRegex);
     return match ? match[0] : null;
